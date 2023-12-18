@@ -43,12 +43,12 @@
         <ion-button id="{{ inst.id_instructivo }}" size="small">
           <ion-icon name="ellipsis-vertical-outline"></ion-icon>
         </ion-button>
-        <ion-popover trigger="{{ inst.id_instructivo }}">
+        <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
           <ng-template>
             <ion-content>
               <ion-list>
                 <ion-item [button]="true" [detail]="false"
-                  ><a [routerLink] = "['/detalle', inst.id_instructivo]" >Ver instructivo</a> </ion-item
+                  ><a routerLink = "detalle/{{inst.id_instructivo}}" >Ver instructivo</a> </ion-item
                 >
               </ion-list>
             </ion-content>

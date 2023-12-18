@@ -15,7 +15,11 @@ export class InstructivoDetalleComponent  implements OnInit {
   constructor(private compartirDatosService: DataServiceService, private route: ActivatedRoute, private location:Location) { }
 
   ngOnInit() {
-    this.getInstructivo();
+    this.route.params.subscribe(params => {
+      console.log(params['id']);
+      // Hacer lo que necesites con el parámetro 'id'
+    });
+    //this.getInstructivo();
   }
 
   getInstructivo(): void {

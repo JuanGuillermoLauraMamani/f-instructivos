@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminPage } from './admin.page';
+import { DetallePage } from './detalle.page';
 import { InstructivoDetalleComponent } from 'src/app/modules/shared/components/instructivo-detalle/instructivo-detalle.component';
 
 const routes: Routes = [
-  { path: '', component: AdminPage },
   {
-    path: 'detalle',
-    loadChildren: () =>
-      import('./detalle/detalle.module').then((m) => m.DetallePageModule),
-  },
+    path: '',
+    component: DetallePage
+  },{
+    path: 'id',
+    component: InstructivoDetalleComponent
+  }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminPageRoutingModule {}
+export class DetallePageRoutingModule {}

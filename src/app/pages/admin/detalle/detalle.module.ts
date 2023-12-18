@@ -4,22 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminPageRoutingModule } from './admin-routing.module';
+import { DetallePageRoutingModule } from './detalle-routing.module';
 
-import { AdminPage } from './admin.page';
+import { DetallePage } from './detalle.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
-    AdminPageRoutingModule,
-    RouterModule
-
+    DetallePageRoutingModule,
+    SharedModule
   ],
-  declarations: [AdminPage]
+  declarations: [DetallePage]
 })
-export class AdminPageModule {}
+export class DetallePageModule {}
