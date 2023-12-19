@@ -23,7 +23,7 @@ export class DataServiceService {
       return this.instructivo = data.instructivos;} ));
   }
   getInstructivo(id: number): Observable<Instructivo> {
-    return this.http.get<Instructivo>(`${this.apiUrl}/${id}`);
+    return this.http.get<Instructivo>(`${this.apiUrl}/${id}`).pipe();
   }
 
   enviarInstructivoSeleccionado(instructivo: Instructivo) {

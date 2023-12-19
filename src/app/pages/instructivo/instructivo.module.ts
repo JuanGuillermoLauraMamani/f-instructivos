@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InstructivoPageRoutingModule } from './instructivo-routing.module';
 
 import { InstructivoPage } from './instructivo.page';
+import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { InstructivoPage } from './instructivo.page';
     IonicModule,
     InstructivoPageRoutingModule
   ],
-  declarations: [InstructivoPage]
+  declarations: [InstructivoPage, SafeHtmlPipe]
 })
 export class InstructivoPageModule {}

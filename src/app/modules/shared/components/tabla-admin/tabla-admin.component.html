@@ -1,65 +1,63 @@
-<table class="tablaVigentes">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Versión</th>
-      <th>Vigencia</th>
-      <th>Fecha Inicio</th>
-      <th>Fecha Fin</th>
-      <th>PDF Original</th>
-      <th>PDF Escaneado</th>
-      <th>Tiempo</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let inst of instructivos">
-      <td>{{ inst.id_instructivo }}</td>
-      <td>{{ inst.nombre }}</td>
-      <td>{{ inst.version }}</td>
-      <td>
-        <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{
-          inst.vigencia ? "Vigente" : "No vigente"
-        }}</ion-badge>
-      </td>
-      <td>{{ inst.fecha_inicio }}</td>
-      <td>{{ inst.vigencia != true ? inst.fecha_fin : "-" }}</td>
-      <td>
-        <ion-button size="small" (click)="open(inst, inst.ruta_pdf_original)"
-          ><ion-icon name="eye-outline" size="small"></ion-icon
-        ></ion-button>
-      </td>
-      <td>
-        <ion-button size="small" (click)="open(inst, inst.ruta_pdf_escaneado)"
-          ><ion-icon name="eye-outline" size="small"></ion-icon
-        ></ion-button>
-      </td>
-      <td>
-        <ion-icon name="timer-outline"></ion-icon
-        >{{ restarFechas(inst.fecha_inicio) }}
-      </td>
-      <td>
-        <ion-button id="{{inst.id_instructivo}}" size="small">
-          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-        </ion-button>
-        <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
-          <ng-template>
-            <ion-content>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-              <ion-list>
-        
-                  <ion-item [button]="true" [detail]="false"
-                  ><ion-button (click) = "openCoso(inst)">Editar instructivo</ion-button> 
-                  </ion-item>
-                  <ion-item [button]="true" [detail]="false"
-                  ><ion-button (click) = "openCoso(inst)">Anular instructivo</ion-button> 
-                  </ion-item>
-                  
-              </ion-list>
-            </ion-content>
-          </ng-template>
-        </ion-popover>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ion-grid >
+  <ion-row>
+    <ion-row>
+      <ion-col>ID</ion-col>
+      <ion-col>Nombre</ion-col>
+      <ion-col>Versión</ion-col>
+      <ion-col>Vigencia</ion-col>
+      <ion-col>Fecha Inicio</ion-col>
+      <ion-col>Fecha Fin</ion-col>
+      <ion-col>PDF Original</ion-col>
+      <ion-col>PDF Escaneado</ion-col>
+      <ion-col>Tiempo</ion-col>
+      <ion-col>Acciones</ion-col>
+    </ion-row>
+  </ion-row>
+
+  <ion-row *ngFor="let inst of instructivos">
+    <ion-col>{{ inst.id_instructivo }}</ion-col>
+    <ion-col>{{ inst.nombre }}</ion-col>
+    <ion-col>{{ inst.version }}</ion-col>
+    <ion-col>
+      <ion-badge color="{{ inst.vigencia ? 'success' : 'danger' }}">{{
+        inst.vigencia ? "Vigente" : "No vigente"
+      }}</ion-badge>
+    </ion-col>
+    <ion-col>{{ inst.fecha_inicio }}</ion-col>
+    <ion-col>{{ inst.vigencia != true ? inst.fecha_fin : "-" }}</ion-col>
+    <ion-col>
+      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_original)"
+        ><ion-icon name="eye-outline" size="small"></ion-icon
+      ></ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_escaneado)"
+        ><ion-icon name="eye-outline" size="small"></ion-icon
+      ></ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-icon name="timer-outline"></ion-icon
+      >{{ restarFechas(inst.fecha_inicio) }}
+    </ion-col>
+    <ion-col>
+      <ion-button id="{{ inst.id_instructivo }}" size="small">
+        <ion-icon name="ellipsis-vertical-outline"  ></ion-icon>
+      </ion-button>
+      <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item  [detail]="false" (click)="openInstructivo(inst)"
+                >
+                  Editar instructivo
+              </ion-item>
+              <ion-item [detail]="false" (click)="openInstructivo(inst)"
+                >Anular instructivo
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-col>
+  </ion-row>
+</ion-grid>

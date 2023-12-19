@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'instructivo',
     loadChildren: () => import('./pages/instructivo/instructivo.module').then( m => m.InstructivoPageModule)
+  },
+  {
+    path: 'instructivo/:id',
+    loadChildren: () => import('./pages/instructivo/instructivo.module').then( m => m.InstructivoPageModule)
   }
 ];
 @NgModule({
