@@ -45,7 +45,7 @@ export class TablaAdminComponent  implements OnInit {
   }
 
 
-  async openCoso(instructivo: Instructivo) {
+  async openInstructivo(instructivo: Instructivo) {
     let modal = await this.modalController.create({
       component: ModalInstructivoComponent,
       cssClass: 'modal-pdf',

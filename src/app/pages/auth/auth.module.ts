@@ -8,6 +8,7 @@ import { AuthPageRoutingModule } from './auth-routing.module';
 
 import { AuthPage } from './auth.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 
 @NgModule({
   imports: [

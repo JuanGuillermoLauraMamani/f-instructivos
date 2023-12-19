@@ -8,9 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-//import { SafeHtmlPipe } from './utils/safe-html.pipe';
+import { SafeHtmlPipe } from './utils/safe-html.pipe';
+import { SharedModule } from './modules/shared/shared.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,10 +19,14 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
+    
     
   ],
-  providers: [{ 
+  providers: [
+    { 
+
     provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy, 
     

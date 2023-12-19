@@ -10,6 +10,7 @@ import { InicioPage } from './inicio.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     IonicModule,
     InicioPageRoutingModule,
-    SharedModule,
+
     HttpClientModule,
   ],
   declarations: [InicioPage],

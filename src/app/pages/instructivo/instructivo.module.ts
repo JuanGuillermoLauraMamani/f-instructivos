@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InstructivoPageRoutingModule } from './instructivo-routing.module';
 
 import { InstructivoPage } from './instructivo.page';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 
 @NgModule({
@@ -14,8 +15,10 @@ import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
     CommonModule,
     FormsModule,
     IonicModule,
-    InstructivoPageRoutingModule
+    InstructivoPageRoutingModule,
+    SharedModule
+
   ],
-  declarations: [InstructivoPage, SafeHtmlPipe]
+  declarations: [InstructivoPage]
 })
 export class InstructivoPageModule {}

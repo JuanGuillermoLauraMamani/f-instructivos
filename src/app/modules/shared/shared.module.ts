@@ -36,7 +36,8 @@ import { ModalInstructivoComponent } from './components/modal-instructivo/modal-
     ModalPDFComponent,
     ModalInstructivoComponent,
     InstructivoDetalleComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule,
@@ -44,7 +45,7 @@ import { ModalInstructivoComponent } from './components/modal-instructivo/modal-
     ReactiveFormsModule,
     FormsModule,
     PdfViewerModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     SafeHtmlPipe
