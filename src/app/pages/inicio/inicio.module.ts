@@ -18,7 +18,7 @@ import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
     FormsModule,
     IonicModule,
     InicioPageRoutingModule,
-
+    SharedModule,
     HttpClientModule,
   ],
   declarations: [InicioPage],

@@ -7,32 +7,41 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar>
     <ion-grid>
-      <ion-row>
-        <ion-col size="9">
-          <ion-row>
-            <ion-title size="small">Instructivo Firmado (Escaneado)</ion-title>
-            <ion-title size="small">
-              <ion-badge
-                color="{{instructivoSeleccionado.vigencia? 'success' : 'danger' }}"
-                >{{ instructivoSeleccionado.vigencia ? "Vigente" : "No vigente"
-                }}</ion-badge
-              ></ion-title
-            >
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="3">
+          <ion-row class="ion-justify-content-start">
+            <ion-col size="90%">
+              <ion-title size="small">
+                Instructivo Firmado (Escaneado)
+              </ion-title>
+            </ion-col>
+            <ion-col size="10%">
+              <ion-title size="small">
+                <ion-badge
+                  color="{{instructivoSeleccionado.vigencia? 'success' : 'danger' }}"
+                  >{{ instructivoSeleccionado.vigencia ? "Vigente" : "No
+                  vigente" }}</ion-badge
+                ></ion-title
+              >
+            </ion-col>
           </ion-row>
         </ion-col>
         <ion-col size="3">
-          <ion-row>
-            <ion-button expand="block" shape="round">
-              <a href="{{instructivoSeleccionado.ruta_pdf_escaneado}}">
-                Descargar
-              </a>
-            </ion-button>
-
-            <ion-button expand="block" shape="round">
-              <a href="{{instructivoSeleccionado.ruta_pdf_original}}">
-                Original (sin firmas)
-              </a>
-            </ion-button>
+          <ion-row class="ion-justify-content-end">
+            <ion-col size="50%">
+              <ion-button shape="round">
+                <a href="{{instructivoSeleccionado.ruta_pdf_escaneado}}">
+                  Descargar
+                </a>
+              </ion-button>
+            </ion-col>
+            <ion-col size="50%">
+              <ion-button shape="round">
+                <a href="{{instructivoSeleccionado.ruta_pdf_original}}">
+                  Original (sin firmas)
+                </a>
+              </ion-button>
+            </ion-col>
           </ion-row>
         </ion-col>
       </ion-row>
