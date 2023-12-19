@@ -1,29 +1,22 @@
-<table class="tablaVigentes">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Versión</th>
-      <th>Fecha Inicio</th>
-      <th>Fecha Fin</th>
-      <th>PDF Original</th>
-      <th>PDF Escaneado</th>
-
-      <!-- Agrega aquí los encabezados para las demás propiedades -->
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let inst of instructivos">
-      <td>{{ inst.id_instructivo }}</td>
-      <td>{{ inst.nombre }}</td>
-      <td>{{ inst.version }}</td>
-      <td>{{ inst.fecha_inicio }}</td>
-      <td>
-        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button></td>
-      <td>
-        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
-      </td>
-      <!-- Agrega aquí las celdas para las demás propiedades -->
-    </tr>
-  </tbody>
-</table>
+<ion-grid class="tabla">
+  <ion-row>
+    <ion-col class="headerTabla">ID</ion-col>
+    <ion-col class="headerTabla">Nombre</ion-col>
+    <ion-col class="headerTabla">Versión</ion-col>
+    <ion-col class="headerTabla">Fecha Inicio</ion-col>
+    <ion-col class="headerTabla">PDF Original</ion-col>
+    <ion-col class="headerTabla">PDF Escaneado</ion-col>  
+  </ion-row>
+  <ion-row *ngFor="let inst of instructivos">
+    <ion-col>{{ inst.id_instructivo }}</ion-col>
+    <ion-col>{{ inst.nombre }}</ion-col>
+    <ion-col>{{ inst.version }}</ion-col>
+    <ion-col>{{ inst.fecha_inicio }}</ion-col>
+    <ion-col>
+      <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
