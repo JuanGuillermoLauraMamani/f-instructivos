@@ -4,6 +4,7 @@ import { IonModal } from '@ionic/angular/common';
 import { Instructivo } from 'src/app/models/instructivos';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { ModalPDFComponent } from '../modal-pdf/modal-pdf.component';
+import { ModalInstructivoComponent } from '../modal-instructivo/modal-instructivo.component';
 
 @Component({
   selector: 'app-tabla-admin',
@@ -43,6 +44,19 @@ export class TablaAdminComponent  implements OnInit {
     return modal.present();
   }
 
+
+  async openCoso(instructivo: Instructivo) {
+    let modal = await this.modalController.create({
+      component: ModalInstructivoComponent,
+      cssClass: 'modal-pdf',
+      componentProps: {
+        instructivo
+      },
+    });
+    console.log(instructivo);
+    return modal.present();
+  }
+
   restarFechas(fechaInicial: string) : string {
     const tiempoInicial = Date.parse(fechaInicial);
     const tiempoFinal = new Date().getTime();
@@ -59,6 +73,7 @@ export class TablaAdminComponent  implements OnInit {
     }
     return resultado
   }
+
 
 
 }

@@ -12,6 +12,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 import { TablaAdminComponent } from './components/tabla-admin/tabla-admin.component';
 import { RouterModule } from '@angular/router';
+import { ModalInstructivoComponent } from './components/modal-instructivo/modal-instructivo.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     LogoComponent,
     TablaVigentesComponent,
     ModalPDFComponent,
+    ModalInstructivoComponent,
     TablaAdminComponent,
     InstructivoDetalleComponent,
     SafeHtmlPipe
@@ -32,6 +34,7 @@ import { RouterModule } from '@angular/router';
     TablaVigentesComponent,
     TablaAdminComponent,
     ModalPDFComponent,
+    ModalInstructivoComponent,
     InstructivoDetalleComponent,
     ReactiveFormsModule
   ],

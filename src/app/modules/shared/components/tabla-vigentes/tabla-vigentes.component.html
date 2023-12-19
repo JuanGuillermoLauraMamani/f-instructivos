@@ -19,9 +19,9 @@
       <td>{{ inst.version }}</td>
       <td>{{ inst.fecha_inicio }}</td>
       <td>
-        <ion-button (click)="open(inst, inst.ruta_pdf_original)"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button></td>
+        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button></td>
       <td>
-        <ion-button (click)="open(inst, inst.ruta_pdf_escaneado)"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
+        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
       </td>
       <!-- Agrega aquí las celdas para las demás propiedades -->
     </tr>

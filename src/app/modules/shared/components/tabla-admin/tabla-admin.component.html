@@ -19,7 +19,7 @@
       <td>{{ inst.nombre }}</td>
       <td>{{ inst.version }}</td>
       <td>
-        <ion-badge color="{{ inst.vigencia ? 'success' : 'danger' }}">{{
+        <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{
           inst.vigencia ? "Vigente" : "No vigente"
         }}</ion-badge>
       </td>
@@ -40,16 +40,21 @@
         >{{ restarFechas(inst.fecha_inicio) }}
       </td>
       <td>
-        <ion-button id="{{ inst.id_instructivo }}" size="small">
+        <ion-button id="{{inst.id_instructivo}}" size="small">
           <ion-icon name="ellipsis-vertical-outline"></ion-icon>
         </ion-button>
         <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
           <ng-template>
-            <ion-content>
+            <ion-content>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
               <ion-list>
-                <ion-item [button]="true" [detail]="false"
-                  ><a routerLink = "detalle/{{inst.id_instructivo}}" >Ver instructivo</a> </ion-item
-                >
+        
+                  <ion-item [button]="true" [detail]="false"
+                  ><ion-button (click) = "openCoso(inst)">Editar instructivo</ion-button> 
+                  </ion-item>
+                  <ion-item [button]="true" [detail]="false"
+                  ><ion-button (click) = "openCoso(inst)">Anular instructivo</ion-button> 
+                  </ion-item>
+                  
               </ion-list>
             </ion-content>
           </ng-template>

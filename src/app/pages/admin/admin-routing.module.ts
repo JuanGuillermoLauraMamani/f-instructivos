@@ -6,11 +6,7 @@ import { InstructivoDetalleComponent } from 'src/app/modules/shared/components/i
 
 const routes: Routes = [
   { path: '', component: AdminPage },
-  {
-    path: 'detalle',
-    loadChildren: () =>
-      import('./detalle/detalle.module').then((m) => m.DetallePageModule),
-  },
+
 ];
 
 @NgModule({

@@ -20,6 +20,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/admin',
     pathMatch: 'full'
+  },
+  {
+    path: 'instructivo',
+    loadChildren: () => import('./pages/instructivo/instructivo.module').then( m => m.InstructivoPageModule)
   }
 ];
 @NgModule({
