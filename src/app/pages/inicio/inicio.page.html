@@ -1,19 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col><ion-title>Inicio</ion-title></ion-col>
-        <ion-col size="auto">
-          <div style="width: 200px">
-            <ion-icon name="person-outline" size="large" ></ion-icon>
-            <ion-button (click)="irLogin()" slot="end">Iniciar Sesion</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-title>Inicio</ion-title>
+    <ion-icon slot="end" name="person-outline" size="large"></ion-icon>
+    <ion-button (click)="irLogin()" slot="end">Iniciar Sesión</ion-button>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <app-tabla-vigentes></app-tabla-vigentes>
 </ion-content>

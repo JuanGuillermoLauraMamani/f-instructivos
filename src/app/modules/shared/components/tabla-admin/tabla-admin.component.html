@@ -1,15 +1,15 @@
-<ion-grid>
+<ion-grid class="tabla">
   <ion-row>
-    <ion-col>ID</ion-col>
-    <ion-col>Nombre</ion-col>
-    <ion-col>Versión</ion-col>
-    <ion-col>Vigencia</ion-col>
-    <ion-col>Fecha Inicio</ion-col>
-    <ion-col>Fecha Fin</ion-col>
-    <ion-col>PDF Original</ion-col>
-    <ion-col>PDF Escaneado</ion-col>
-    <ion-col>Tiempo</ion-col>
-    <ion-col>Acciones</ion-col>  
+    <ion-col class="headerTabla">ID</ion-col>
+    <ion-col class="headerTabla">Nombre</ion-col>
+    <ion-col class="headerTabla">Versión</ion-col>
+    <ion-col class="headerTabla">Vigencia</ion-col>
+    <ion-col class="headerTabla">Fecha Inicio</ion-col>
+    <ion-col class="headerTabla">Fecha Fin</ion-col>
+    <ion-col class="headerTabla">PDF Original</ion-col>
+    <ion-col class="headerTabla">PDF Escaneado</ion-col>
+    <ion-col class="headerTabla">Tiempo</ion-col>
+    <ion-col class="headerTabla">Acciones</ion-col>  
   </ion-row>
   <ion-row *ngFor="let inst of instructivos">
     <ion-col>{{ inst.id_instructivo }}</ion-col>
