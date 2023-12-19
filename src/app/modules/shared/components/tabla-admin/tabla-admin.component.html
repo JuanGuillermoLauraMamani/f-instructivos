@@ -1,4 +1,25 @@
-<ion-grid class="tabla">
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-item>
+      <ion-title>Instructivos</ion-title>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-searchbar color="light" placeholder="Filtrar"></ion-searchbar></ion-col>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-button color="tertiary">
+            <ion-icon slot="start" name="document"></ion-icon>
+            Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-grid class="tabla ion-padding">
   <ion-row>
     <ion-col class="headerTabla">ID</ion-col>
     <ion-col class="headerTabla">Nombre</ion-col>
