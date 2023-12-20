@@ -24,7 +24,7 @@ export class TablaVigentesComponent implements OnInit {
   }
 
   getData(): void {
-    this.dataService.getData().subscribe((response: Instructivo[]) => {
+    this.dataService.getDataVigentes().subscribe((response: Instructivo[]) => {
       this.instructivos = response;
       console.log(response);
     });

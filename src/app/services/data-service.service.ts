@@ -18,6 +18,10 @@ export class DataServiceService {
   
   constructor(private http: HttpClient) { }
 
+  getDataVigentes(): Observable<Instructivo[]> {
+    return this.http.get<Instructivo[]>(`${this.apiUrl}/vigentes`).pipe(map((data:any)=> {
+      return this.instructivo = data.instructivos;} ));
+  }
   getData(): Observable<Instructivo[]> {
     return this.http.get<Instructivo[]>(this.apiUrl).pipe(map((data:any)=> {
       return this.instructivo = data.instructivos;} ));

@@ -6,10 +6,11 @@
   </ion-toolbar>
   <ion-toolbar class="ion-padding">
     <ion-grid>
-      <ion-row>
-        <ion-col><ion-searchbar color="light" placeholder="Filtrar"></ion-searchbar></ion-col>
-        <ion-col></ion-col>
-        <ion-col>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="70%">
+          <ion-searchbar  color="light" placeholder="Filtrar" ></ion-searchbar>
+        </ion-col>
+        <ion-col size="30%">
           <ion-button color="tertiary">
             <ion-icon slot="start" name="document"></ion-icon>
             Agregar
@@ -42,12 +43,12 @@
     <ion-col>{{ inst.fecha_inicio }}</ion-col>
     <ion-col>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</ion-col>
     <ion-col>
-      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_original)">
+      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
         <ion-icon name="eye-outline" size="small"></ion-icon>
       </ion-button>
     </ion-col>
     <ion-col>
-      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_escaneado)">
+      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')">
         <ion-icon name="eye-outline" size="small"></ion-icon>
       </ion-button>
     </ion-col>
