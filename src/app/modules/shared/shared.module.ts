@@ -13,6 +13,10 @@ import { SafeHtmlPipe } from 'src/app/utils/safe-html.pipe';
 import { TablaAdminComponent } from './components/tabla-admin/tabla-admin.component';
 import { RouterModule } from '@angular/router';
 import { ModalInstructivoComponent } from './components/modal-instructivo/modal-instructivo.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { PopoverCustomComponent } from './components/popover-custom/popover-custom.component';
+import { ModalFormularioComponent } from './components/modal-formulario/modal-formulario.component';
+import { ModalBusquedaComponent } from './components/modal-busqueda/modal-busqueda.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +26,12 @@ import { ModalInstructivoComponent } from './components/modal-instructivo/modal-
     TablaVigentesComponent,
     ModalPDFComponent,
     ModalInstructivoComponent,
+    ModalFormularioComponent,
+    ModalBusquedaComponent,
     TablaAdminComponent,
     InstructivoDetalleComponent,
+    SearchbarComponent,
+    PopoverCustomComponent,
     SafeHtmlPipe
     
   ],
@@ -35,8 +43,12 @@ import { ModalInstructivoComponent } from './components/modal-instructivo/modal-
     TablaAdminComponent,
     ModalPDFComponent,
     ModalInstructivoComponent,
+    ModalBusquedaComponent,
+    ModalFormularioComponent,
     InstructivoDetalleComponent,
     ReactiveFormsModule,
+    SearchbarComponent,
+    PopoverCustomComponent,
     SafeHtmlPipe
   ],
   imports: [

@@ -1,0 +1,11 @@
+<ion-button fill="clear" color="dark" id="{{tipo_popover}}">{{tipo_popover}}<ion-icon slot="end" name="chevron-down-outline"></ion-icon></ion-button>
+<ion-popover trigger="{{tipo_popover}}" [dismissOnSelect]="true" [showBackdrop]="false" > 
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item [button]="true" [detail]="false">Modal</ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+

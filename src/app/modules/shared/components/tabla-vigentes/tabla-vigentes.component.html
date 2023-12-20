@@ -1,4 +1,21 @@
-<ion-grid class="tabla">
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-item>
+      <ion-title>Instructivos</ion-title>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="auto">
+          <app-searchbar></app-searchbar>
+        </ion-col> 
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-grid class="tabla" *ngIf="instructivos.length>0" >
   <ion-row>
     <ion-col class="headerTabla">ID</ion-col>
     <ion-col class="headerTabla">Nombre</ion-col>
@@ -22,3 +39,8 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+<div *ngIf="instructivos.length==0" class="ion-padding">
+  <ion-text color="danger">
+    <h2>No hay instructivos cargados</h2>
+  </ion-text>
+</div> 

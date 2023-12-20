@@ -5,6 +5,7 @@ import { Instructivo } from 'src/app/models/instructivos';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { ModalPDFComponent } from '../modal-pdf/modal-pdf.component';
 import { ModalInstructivoComponent } from '../modal-instructivo/modal-instructivo.component';
+import { ModalFormularioComponent } from '../modal-formulario/modal-formulario.component';
 
 @Component({
   selector: 'app-tabla-admin',
@@ -41,6 +42,17 @@ export class TablaAdminComponent  implements OnInit {
         url
       },
     });
+    return modal.present();
+  }
+
+
+  async openFormulario() {
+    let modal = await this.modalController.create({
+      component: ModalFormularioComponent,
+      cssClass: 'modal-pdf'
+
+    });
+
     return modal.present();
   }
 
