@@ -61,12 +61,12 @@
     <ion-col>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</ion-col>
     <ion-col>-</ion-col>
     <ion-col>
-      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_original)">
+      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
         <ion-icon name="eye-outline" size="small"></ion-icon>
       </ion-button>
     </ion-col>
     <ion-col>
-      <ion-button size="small" (click)="open(inst, inst.ruta_pdf_escaneado)">
+      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')">
         <ion-icon name="eye-outline" size="small"></ion-icon>
       </ion-button>
     </ion-col>

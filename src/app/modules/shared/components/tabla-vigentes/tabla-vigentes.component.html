@@ -2,6 +2,7 @@
   <ion-row>
     <ion-col class="headerTabla">ID</ion-col>
     <ion-col class="headerTabla">Nombre</ion-col>
+    <ion-col class="headerTabla">Tipo</ion-col>
     <ion-col class="headerTabla">Versión</ion-col>
     <ion-col class="headerTabla">Fecha Inicio</ion-col>
     <ion-col class="headerTabla">PDF Original</ion-col>
@@ -10,6 +11,7 @@
   <ion-row *ngFor="let inst of instructivos">
     <ion-col>{{ inst.id_instructivo }}</ion-col>
     <ion-col>{{ inst.nombre }}</ion-col>
+    <ion-col>{{ inst.tipo }}</ion-col>
     <ion-col>{{ inst.version }}</ion-col>
     <ion-col>{{ inst.fecha_inicio }}</ion-col>
     <ion-col>
