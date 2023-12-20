@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar >
-    <ion-title></ion-title>
+    <ion-title>Instructivo</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -8,7 +8,90 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content >
-  
+<ion-content class="ion-padding">
+  <ion-toolbar><h2>Nuevo Instructivo</h2></ion-toolbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-label>Nombre del instructivo</ion-label>
+        <ion-item>
+          <ion-input placeholder="Ingrese el nombre del nuevo instructivo"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-label>Estado</ion-label>
+        <ion-item lines="none"> 
+          <ion-badge color="success">
+            Vigente
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </ion-badge>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-label>Versión</ion-label>
+        <ion-item>
+          <ion-input type="number" placeholder="0.0"></ion-input>
+        </ion-item>
+        <ion-chip color="tertiary">1.0</ion-chip>
+        <ion-chip color="tertiary">2.0</ion-chip>
+        <ion-chip color="tertiary">3.0</ion-chip>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-label>Fecha Inicio</ion-label>
+        <ion-item>
+          <ion-datetime-button datetime="fechaInicio"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="fechaInicio"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-label>Fecha Fin</ion-label>
+        <ion-item>
+          <ion-datetime-button datetime="fechaFin"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="fechaFin"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-label>Tipo Documento</ion-label>
+        <ion-item>
+          <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción">
+            <ion-select-option value="1">Política</ion-select-option>
+            <ion-select-option value="2">Guía</ion-select-option>
+            <ion-select-option value="3">Instructivo</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col offset="string"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Subir Documento</ion-label>
+          <div>
+            <input type="file" accept=".pdf" name="documento" id="documento" class="inputfile inputfile-7"/>
+            <label for="documento">
+              <span class="iborrainputfile"></span>
+              <strong>
+                <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                Seleccionar documento
+              </strong>
+            </label>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-toolbar style="text-align: center;">
+    <ion-button color="tertiary" shape="round" fill="outline">Cancelar</ion-button>
+    <ion-button color="tertiary" shape="round" fill="solid">Crear</ion-button>
+  </ion-toolbar>
+</ion-footer>
