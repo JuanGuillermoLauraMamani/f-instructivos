@@ -4,12 +4,29 @@
       <ion-title>Instructivos</ion-title>
     </ion-item>
   </ion-toolbar>
-  <ion-toolbar class="ion-padding">
+  <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-col><ion-searchbar color="light" placeholder="Filtrar"></ion-searchbar></ion-col>
-        <ion-col></ion-col>
-        <ion-col>
+        <ion-col size="3"><ion-searchbar color="light" placeholder="Filtrar"></ion-searchbar></ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Instructivo</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Versión</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Vigencia</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Fecha Inicio</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Fecha Fin</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-label>Tipo</ion-label><ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="auto">
           <ion-button color="tertiary">
             <ion-icon slot="start" name="document"></ion-icon>
             Agregar
@@ -27,6 +44,7 @@
     <ion-col class="headerTabla">Vigencia</ion-col>
     <ion-col class="headerTabla">Fecha Inicio</ion-col>
     <ion-col class="headerTabla">Fecha Fin</ion-col>
+    <ion-col class="headerTabla">Tipo</ion-col>
     <ion-col class="headerTabla">PDF Original</ion-col>
     <ion-col class="headerTabla">PDF Escaneado</ion-col>
     <ion-col class="headerTabla">Tiempo</ion-col>
@@ -41,6 +59,7 @@
     </ion-col>
     <ion-col>{{ inst.fecha_inicio }}</ion-col>
     <ion-col>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</ion-col>
+    <ion-col>-</ion-col>
     <ion-col>
       <ion-button size="small" (click)="open(inst, inst.ruta_pdf_original)">
         <ion-icon name="eye-outline" size="small"></ion-icon>
