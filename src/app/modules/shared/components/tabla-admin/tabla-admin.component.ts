@@ -37,15 +37,11 @@ export class TablaAdminComponent  implements OnInit {
   }
 
   ngOnInit() {
-    /*
     this.dtOptions = {
-
-      pagingType: 'full_numbers',
-      pageLength: 10,
       language: {
-        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
       }
-    };*/
+    };
     this.getData();
   }
   async open(instructivo: Instructivo, url: string) {

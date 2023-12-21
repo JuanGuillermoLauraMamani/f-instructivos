@@ -2,85 +2,80 @@
   <ion-toolbar>
     <ion-item>
       <ion-title>Instructivos</ion-title>
+      <ion-button size="default" color="tertiary" (click)="openFormulario()">
+        <ion-icon slot="start" name="document"></ion-icon>
+        Agregar
+      </ion-button>
     </ion-item>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row class="ion-justify-content-between">
-        <ion-col size="auto">
-          <app-searchbar (datosRecibidos)="recibirDatos($event)"  (campo)="recibirCampo($event)" [instructivosData]="instructivos"></app-searchbar>
-        </ion-col> 
-        <ion-col size="auto">
-          <ion-button color="tertiary" (click)="openFormulario()">
-            <ion-icon slot="start" name="document"></ion-icon>
-            Agregar
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
 </ion-header>
-<ion-grid class="tabla ion-padding" *ngIf="instructivos.length>0">
-  <ion-row>
-    <ion-col class="headerTabla">ID</ion-col>
-    <ion-col size="5" class="headerTabla">Nombre</ion-col>
-    <ion-col class="headerTabla">Versión</ion-col>
-    <ion-col class="headerTabla">Vigencia</ion-col>
-    <ion-col class="headerTabla">Fecha Inicio</ion-col>
-    <ion-col class="headerTabla">Fecha Fin</ion-col>
-    <ion-col class="headerTabla">Tipo</ion-col>
-    <ion-col class="headerTabla">PDF Original</ion-col>
-    <ion-col class="headerTabla">PDF Escaneado</ion-col>
-    <ion-col class="headerTabla">Tiempo</ion-col>
-    <ion-col class="headerTabla" size="auto">Acciones</ion-col>  
-  </ion-row>
-  <ion-row *ngFor="let inst of instructivos">
-    <ion-col>{{ inst.id_instructivo }}</ion-col>
-    <ion-col size="5">{{ inst.nombre }}</ion-col>
-    <ion-col>{{ inst.version }}</ion-col>
-    <ion-col>
-        <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{ inst.vigencia ? "Vigente" : "No vigente" }}</ion-badge>
-    </ion-col>
-    <ion-col>{{ inst.fecha_inicio }}</ion-col>
-    <ion-col>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</ion-col>
-    <ion-col>{{inst.tipo}}</ion-col>
-    <ion-col>
-      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
-        <ion-icon name="eye-outline" size="small"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')">
-        <ion-icon name="eye-outline" size="small"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col>
-        <ion-icon name="timer-outline"></ion-icon>
-        {{ restarFechas(inst.fecha_inicio) }}
-    </ion-col>
-    <ion-col size="auto">
-      <ion-button fill="clear" color="dark" id="{{inst.id_instructivo}}" size="small">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-      <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
-        <ng-template>
-          <ion-content>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-            <ion-list>
-              <ion-item [button]="true" [detail]="false" (click) = "openInstructivo(inst)">
-                Editar instructivo 
-              </ion-item>
-              <ion-item [button]="true" [detail]="false">
-                Anular instructivo 
-              </ion-item>    
-            </ion-list>
-          </ion-content>
-        </ng-template>
-      </ion-popover>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<div class="ion-padding">
+  <table datatable [dtOptions]="dtOptions" *ngIf="instructivos.length>0">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Versión</td>
+        <td>Vigencia</td>
+        <td>Fecha Inicio</td>
+        <td>Fecha Fin</td>
+        <td>Tipo</td>
+        <td>PDF Original</td>
+        <td>PDF Escaneado</td>
+        <td>Tiempo</td>
+        <td>Acciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inst of instructivos">
+        <td>{{ inst.id_instructivo }}</td>
+        <td>{{ inst.nombre }}</td>
+        <td>{{ inst.version }}</td>
+        <td>
+          <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{ inst.vigencia ? "Vigente" : "No vigente" }}</ion-badge>
+        </td>
+        <td>{{ inst.fecha_inicio }}</td>
+        <td>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</td>
+        <td>{{inst.tipo}}</td>
+        <td>
+          <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
+            <ion-icon name="eye-outline" size="small"></ion-icon>
+          </ion-button>
+        </td>
+        <td>
+          <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')">
+            <ion-icon name="eye-outline" size="small"></ion-icon>
+          </ion-button>
+        </td>
+        <td>
+            <ion-icon name="timer-outline"></ion-icon>
+            {{ restarFechas(inst.fecha_inicio) }}
+        </td>
+        <td>
+          <ion-button fill="clear" color="dark" id="{{inst.id_instructivo}}" size="small">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          </ion-button>
+          <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
+            <ng-template>
+              <ion-content>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                <ion-list>
+                  <ion-item [button]="true" [detail]="false" (click) = "openInstructivo(inst)">
+                    Editar instructivo 
+                  </ion-item>
+                  <ion-item [button]="true" [detail]="false">
+                    Anular instructivo 
+                  </ion-item>    
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div *ngIf="instructivos.length===0" class="ion-padding">
   <ion-text color="danger">
-    <h2>No hay instructivos cargados</h2>
+    <h2>No existen instructivos cargados</h2>
   </ion-text>
 </div> 

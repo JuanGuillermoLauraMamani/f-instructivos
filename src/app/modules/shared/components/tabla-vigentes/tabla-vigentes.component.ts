@@ -17,9 +17,15 @@ export class TablaVigentesComponent implements OnInit {
   @Input() urlSeleccionado!:boolean;
   url!: ArrayBuffer;
   @ViewChild(IonModal) modal!: IonModal;
+  dtOptions: DataTables.Settings = {};
   constructor(private dataService: DataServiceService, private modalController: ModalController) {}
 
   ngOnInit(): void {
+    this.dtOptions = {
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+      }
+    };
     this.getData();
   }
 
