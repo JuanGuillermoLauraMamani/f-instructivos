@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
@@ -8,11 +8,24 @@ import { ModalController, NavParams } from '@ionic/angular';
 })
 export class ModalBusquedaComponent  implements OnInit {
 
-  constructor(private modalController: ModalController, private navParams: NavParams) { }
+  @Input() data:string[]= [];
+  @Output() item = new EventEmitter<string>();  
+  valor:string = "";
+  constructor() { }
 
+  
+  handleInput(event: any) {
+    const query = event.target.value.toLowerCase();
+    this.data = this.data.filter((d) => d.toLowerCase().indexOf(query) > -1);
+  }
   ngOnInit() {}
 
-  close(){
-    this.modalController.dismiss();
+  onClick(item: string) {
+    this.valor = item;
   }
+
+  addItem(){
+    this.item.emit(this.valor);
+  }
+
 }

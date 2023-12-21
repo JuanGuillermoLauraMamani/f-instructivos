@@ -20,8 +20,10 @@ export class TablaAdminComponent  implements OnInit {
   @Input() urlSeleccionado!:boolean;
   url!: ArrayBuffer;
   @ViewChild(IonModal) modal!: IonModal;
+  valor: string = "";
 
   constructor(private dataService: DataServiceService, private modalController: ModalController) { }
+
 
   getData(): void {
     this.dataService.getData().subscribe((response: Instructivo[]) => {
@@ -86,6 +88,11 @@ export class TablaAdminComponent  implements OnInit {
     return resultado
   }
 
+  recibirDatos(datos:string){
+    console.log("recibir 2 : "+datos );
+    this.valor = datos;
+    this.instructivos = this.instructivos.filter((instructivo: Instructivo) => instructivo.tipo === this.valor);
+  }
 
 
 }

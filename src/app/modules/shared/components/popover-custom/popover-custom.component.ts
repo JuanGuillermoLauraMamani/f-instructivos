@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-popover-custom',
@@ -8,9 +8,21 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PopoverCustomComponent  implements OnInit {
 
   @Input() tipo_popover!:string;
+  @Input() data:string[]= [];
+  @Output() datosRecibidos = new EventEmitter<string>();  
+  valor!:string;
+
 
   constructor() { }
 
   ngOnInit() {}
+
+ 
+  addItem(valor: string){
+    this.valor = valor;
+    this.datosRecibidos.emit(this.valor);
+  }
+
+  
 
 }

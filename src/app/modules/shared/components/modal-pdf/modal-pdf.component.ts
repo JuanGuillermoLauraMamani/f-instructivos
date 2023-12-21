@@ -16,6 +16,7 @@ export class ModalPDFComponent implements OnInit {
   //@Input() instructivo!: Instructivo;
   public instructivo!: Instructivo;
   url!:string ;
+ 
 
   constructor(private modalController: ModalController, private navParams: NavParams) {
     this.instructivo = this.navParams.get('instructivo');
@@ -25,6 +26,8 @@ export class ModalPDFComponent implements OnInit {
   
   ngOnInit() {
   }
+
+
   
   close(){
     this.modalController.dismiss();

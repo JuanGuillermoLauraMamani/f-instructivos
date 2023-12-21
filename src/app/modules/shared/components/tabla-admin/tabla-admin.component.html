@@ -8,7 +8,7 @@
     <ion-grid>
       <ion-row class="ion-justify-content-between">
         <ion-col size="auto">
-          <app-searchbar></app-searchbar>
+          <app-searchbar (datosRecibidos)="recibirDatos($event)" [instructivosData]="instructivos"></app-searchbar>
         </ion-col> 
         <ion-col size="auto">
           <ion-button color="tertiary" (click)="openFormulario()">
@@ -43,7 +43,7 @@
     </ion-col>
     <ion-col>{{ inst.fecha_inicio }}</ion-col>
     <ion-col>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</ion-col>
-    <ion-col>-</ion-col>
+    <ion-col>{{inst.tipo}}</ion-col>
     <ion-col>
       <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
         <ion-icon name="eye-outline" size="small"></ion-icon>

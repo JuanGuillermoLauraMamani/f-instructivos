@@ -1,9 +1,9 @@
 <ion-button fill="clear" color="dark" id="{{tipo_popover}}">{{tipo_popover}}<ion-icon slot="end" name="chevron-down-outline"></ion-icon></ion-button>
-<ion-popover trigger="{{tipo_popover}}" [dismissOnSelect]="true" [showBackdrop]="false" > 
+<ion-popover trigger="{{tipo_popover}}" [showBackdrop]="false" > 
   <ng-template>
     <ion-content>
       <ion-list>
-        <ion-item [button]="true" [detail]="false">Modal</ion-item>
+        <app-modal-busqueda (item)="addItem($event)" [data]=data></app-modal-busqueda>
       </ion-list>
     </ion-content>
   </ng-template>
