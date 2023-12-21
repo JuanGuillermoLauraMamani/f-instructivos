@@ -8,7 +8,7 @@
     <ion-grid>
       <ion-row class="ion-justify-content-between">
         <ion-col size="auto">
-          <app-searchbar (datosRecibidos)="recibirDatos($event)" [instructivosData]="instructivos"></app-searchbar>
+          <app-searchbar (datosRecibidos)="recibirDatos($event)"  (campo)="recibirCampo($event)" [instructivosData]="instructivos"></app-searchbar>
         </ion-col> 
         <ion-col size="auto">
           <ion-button color="tertiary" (click)="openFormulario()">

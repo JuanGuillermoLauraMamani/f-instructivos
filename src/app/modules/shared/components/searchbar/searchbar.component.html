@@ -1,6 +1,6 @@
 <ion-grid >
   <ion-row>
-    <ion-col size="auto"><ion-searchbar color="light" placeholder="Filtrar"></ion-searchbar></ion-col>
+    <ion-col size="auto"><ion-searchbar color="light" placeholder="Filtrar" ></ion-searchbar></ion-col>
     <app-popover-custom (datosRecibidos)="recibir($event)" (click) ="obtenerDatosFiltro('version')" [data]=data tipo_popover="Version"></app-popover-custom>
     <app-popover-custom (datosRecibidos)="recibir($event)" (click) ="obtenerDatosFiltro('vigencia')" [data]=data  tipo_popover="Vigencia"></app-popover-custom>
     <app-popover-custom (datosRecibidos)="recibir($event)" (click) ="obtenerDatosFiltro('fecha_inicio')" [data]=data  tipo_popover="Fecha Inicio"></app-popover-custom>

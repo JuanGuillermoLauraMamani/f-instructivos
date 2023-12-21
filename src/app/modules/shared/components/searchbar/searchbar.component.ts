@@ -11,8 +11,10 @@ export class SearchbarComponent  implements OnInit {
   @Input() instructivosData: Instructivo[]= [];
   data: any[] = [];
   @Output() datosRecibidos = new EventEmitter<string>();  
+  @Output() campo = new EventEmitter<string>();
   valor!:string;
-  
+  campoParametro!:string;
+
 
   constructor() { }
 
@@ -23,8 +25,9 @@ export class SearchbarComponent  implements OnInit {
   obtenerDatosFiltro(name:keyof Instructivo) {
 
     const campoEsspecial = name;
+    this.campoParametro = name;
     this.data = this.obtenerValoresCampo(campoEsspecial)
-
+    this.campo.emit(this.campoParametro);
   }
 
   obtenerValoresCampo(campo: keyof Instructivo): any[] {
@@ -36,11 +39,13 @@ export class SearchbarComponent  implements OnInit {
   
     return Array.from(valoresSet);
     //return this.instructivosData.map(instructivo => instructivo[campo]);
+
   }
 
   recibir(datos:string){
     console.log("recibir: "+datos );
     this.valor = datos;
     this.datosRecibidos.emit(this.valor);
+
   }
 }

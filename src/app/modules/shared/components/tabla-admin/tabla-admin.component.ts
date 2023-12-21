@@ -21,6 +21,10 @@ export class TablaAdminComponent  implements OnInit {
   url!: ArrayBuffer;
   @ViewChild(IonModal) modal!: IonModal;
   valor: string = "";
+  dtOptions: DataTables.Settings = {};
+  campo!: keyof Instructivo;
+
+
 
   constructor(private dataService: DataServiceService, private modalController: ModalController) { }
 
@@ -33,6 +37,15 @@ export class TablaAdminComponent  implements OnInit {
   }
 
   ngOnInit() {
+    /*
+    this.dtOptions = {
+
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+      }
+    };*/
     this.getData();
   }
   async open(instructivo: Instructivo, url: string) {
@@ -89,9 +102,11 @@ export class TablaAdminComponent  implements OnInit {
   }
 
   recibirDatos(datos:string){
-    console.log("recibir 2 : "+datos );
     this.valor = datos;
-    this.instructivos = this.instructivos.filter((instructivo: Instructivo) => instructivo.tipo === this.valor);
+    this.instructivos = this.instructivos.filter((instructivo: Instructivo) => instructivo[this.campo] === this.valor);
+  }
+  recibirCampo(campo:string){
+    this.campo = campo as keyof Instructivo;
   }
 
 

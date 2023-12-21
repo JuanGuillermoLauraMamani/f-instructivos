@@ -11,6 +11,8 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { SafeHtmlPipe } from './utils/safe-html.pipe';
 import { SharedModule } from './modules/shared/shared.module';
 
+import {DataTablesModule} from 'angular-datatables'
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +21,7 @@ import { SharedModule } from './modules/shared/shared.module';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
 
     
     
