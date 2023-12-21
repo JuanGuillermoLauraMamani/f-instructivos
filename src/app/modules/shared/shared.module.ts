@@ -17,6 +17,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { PopoverCustomComponent } from './components/popover-custom/popover-custom.component';
 import { ModalFormularioComponent } from './components/modal-formulario/modal-formulario.component';
 import { ModalBusquedaComponent } from './components/modal-busqueda/modal-busqueda.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { ModalBusquedaComponent } from './components/modal-busqueda/modal-busque
     SearchbarComponent,
     PopoverCustomComponent,
     SafeHtmlPipe
-    
   ],
   exports: [
     HeaderComponent,
@@ -58,6 +58,7 @@ import { ModalBusquedaComponent } from './components/modal-busqueda/modal-busque
     FormsModule,
     PdfViewerModule,
     RouterModule,
+    DataTablesModule
   ],
   providers: [
     SafeHtmlPipe

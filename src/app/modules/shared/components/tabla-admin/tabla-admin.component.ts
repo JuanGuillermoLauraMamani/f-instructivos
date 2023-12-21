@@ -21,6 +21,7 @@ export class TablaAdminComponent  implements OnInit {
   url!: ArrayBuffer;
   @ViewChild(IonModal) modal!: IonModal;
   valor: string = "";
+  dtOptions: DataTables.Settings = {};
 
   constructor(private dataService: DataServiceService, private modalController: ModalController) { }
 
@@ -33,6 +34,11 @@ export class TablaAdminComponent  implements OnInit {
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+      }
+    };
     this.getData();
   }
   async open(instructivo: Instructivo, url: string) {
