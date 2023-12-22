@@ -1,5 +1,5 @@
-<ion-header >
-  <ion-toolbar >
+<ion-header>
+  <ion-toolbar>
     <ion-title>Instructivo</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">
@@ -9,80 +9,98 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-toolbar><h2>Nuevo Instructivo</h2></ion-toolbar>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="8">
-        <ion-label>Nombre del instructivo</ion-label>
-        <ion-item>
-          <ion-input placeholder="Ingrese el nombre del nuevo instructivo"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-label>Estado</ion-label>
-        <ion-item lines="none"> 
-          <ion-badge color="success">
-            Vigente
-            <ion-icon name="checkmark-circle"></ion-icon>
-          </ion-badge>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="auto">
-        <ion-label>Versión</ion-label>
-        <ion-item>
-          <ion-input type="number" placeholder="0.0"></ion-input>
-        </ion-item>
-        <ion-chip color="tertiary">1.0</ion-chip>
-        <ion-chip color="tertiary">2.0</ion-chip>
-        <ion-chip color="tertiary">3.0</ion-chip>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-label>Fecha Inicio</ion-label>
-        <ion-item>
-          <ion-datetime-button datetime="fechaInicio"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime id="fechaInicio"></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-item>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-label>Fecha Fin</ion-label>
-        <ion-item>
-          <ion-datetime-button datetime="fechaFin"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime id="fechaFin"></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-item>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-label>Tipo Documento</ion-label>
-        <ion-item>
-          <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción">
-            <ion-select-option value="1">Política</ion-select-option>
-            <ion-select-option value="2">Guía</ion-select-option>
-            <ion-select-option value="3">Instructivo</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col offset="string"></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-label>Subir Documento</ion-label>
-        <ion-input class="content-input" type="file" placeholder="Awesome Input"></ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form (ngSubmit)="enviarDatos()">
+    <ion-toolbar><h2>Nuevo Instructivo</h2></ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">
+          <ion-label>Nombre del instructivo</ion-label>
+          <ion-item>
+            <ion-input
+              type="text" name="nombre" [(ngModel)]="nombre"
+              placeholder="Ingrese el nombre del nuevo instructivo"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-label>Estado</ion-label>
+          <ion-item lines="none">
+            <ion-badge color="success">
+              Vigente
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </ion-badge>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="auto">
+          <ion-label>Versión</ion-label>
+          <ion-item>
+            <ion-input 
+            name="version" [(ngModel)]="version"
+            type="number" placeholder="0.0"></ion-input>
+          </ion-item>
+          <ion-chip color="tertiary">1.0</ion-chip>
+          <ion-chip color="tertiary">2.0</ion-chip>
+          <ion-chip color="tertiary">3.0</ion-chip>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-label>Fecha Inicio</ion-label>
+          <ion-item>
+            <ion-datetime-button   datetime="fechaInicio"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="fechaInicio" displayFormat="DD/MM/YYYY" [(ngModel)]="fechaInicio" (ionChange)="obtenerFechaSeleccionada($event)"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-label>Fecha Fin</ion-label>
+          <ion-item>
+            <ion-datetime-button datetime="fechaFin"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="fechaFin"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-label>Tipo Documento</ion-label>
+          <ion-item>
+            <ion-select
+              class="always-flip"
+              toggleIcon="caret-down-sharp"
+              interface="popover"
+              placeholder="Elija opción"
+            >
+              <ion-select-option value="1">Política</ion-select-option>
+              <ion-select-option value="2">Guía</ion-select-option>
+              <ion-select-option value="3">Instructivo</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col offset="string"></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Subir Documento</ion-label>
+          <ion-input
+            class="content-input"
+            type="file"
+            placeholder="Awesome Input"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 <ion-footer>
-  <ion-toolbar style="text-align: center;">
-    <ion-button color="tertiary" shape="round" fill="outline">Cancelar</ion-button>
+  <ion-toolbar style="text-align: center">
+    <ion-button color="tertiary" shape="round" fill="outline"
+      >Cancelar</ion-button
+    >
     <ion-button color="tertiary" shape="round" fill="solid">Crear</ion-button>
   </ion-toolbar>
 </ion-footer>

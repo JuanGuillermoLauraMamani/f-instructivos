@@ -88,11 +88,13 @@ export class TablaAdminComponent  implements OnInit {
     let dias: number = Math.floor((tiempoFinal - tiempoInicial) / (1000 * 60 * 60 * 24));
 
     if(dias > 30){
-      resultado = Math.trunc(dias/30)+" meses";
+      resultado = "Hace "+ Math.trunc(dias/30)+" meses";
     }else if(dias > 365){
-      resultado = Math.trunc(dias/365)+" años" ;
-    }else{
-      resultado = dias+" días";
+      resultado = "Hace "+ Math.trunc(dias/365)+" años" ;
+    }else if(Number.isNaN(dias) ){
+      resultado = "hoy";
+    }else{      
+      resultado ="Hace "+ dias+" días";
     }
     return resultado
   }

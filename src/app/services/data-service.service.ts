@@ -39,6 +39,10 @@ export class DataServiceService {
     return of(this.instructivo.find(instructivo => instructivo.id_instructivo === id) as Instructivo);
   }
   
+  registrarInstructivo(formData: FormData) {
+    return this.http.post<any>(`${this.apiUrl}/`, formData);
+
+  }
   /*
   getPDF(url:string): Observable<ArrayBuffer> {
    return this.http.get(url, {responseType: 'arraybuffer'});
