@@ -36,7 +36,7 @@
         </td>
         <td>{{ inst.fecha_inicio }}</td>
         <td>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</td>
-        <td>{{inst.tipo}}</td>
+        <td>{{ inst.tipo }}</td>
         <td>
           <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
             <ion-icon name="eye-outline" size="small"></ion-icon>

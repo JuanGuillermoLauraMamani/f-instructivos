@@ -3,6 +3,7 @@ export interface Instructivo {
     nombre: string;
     version: number;
     vigencia: boolean;
+    estado: boolean;
     tipo: string;
     confidencia: string;
     fecha_inicio: string;

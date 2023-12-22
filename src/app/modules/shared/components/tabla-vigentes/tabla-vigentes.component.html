@@ -5,34 +5,36 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
-<table datatable [dtOptions]="dtOptions" *ngIf="instructivos.length>0">
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>Nombre</td>
-      <td>Tipo</td>
-      <td>Versión</td>
-      <td>Fecha Inicio</td>
-      <td>PDF Original</td>
-      <td>PDF Escaneado</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let inst of instructivos">
-      <td>{{ inst.id_instructivo }}</td>
-      <td>{{ inst.nombre }}</td>
-      <td>{{ inst.tipo }}</td>
-      <td>{{ inst.version }}</td>
-      <td>{{ inst.fecha_inicio }}</td>
-      <td>
-        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
-      </td>
-      <td>
-        <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="ion-padding">
+  <table datatable [dtOptions]="dtOptions" *ngIf="instructivos.length>0">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Tipo</td>
+        <td>Versión</td>
+        <td>Fecha Inicio</td>
+        <td>PDF Original</td>
+        <td>PDF Escaneado</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inst of instructivos">
+        <td>{{ inst.id_instructivo }}</td>
+        <td>{{ inst.nombre }}</td>
+        <td>{{ inst.tipo }}</td>
+        <td>{{ inst.version }}</td>
+        <td>{{ inst.fecha_inicio }}</td>
+        <td>
+          <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
+        </td>
+        <td>
+          <ion-button (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')"><ion-icon name="eye-outline" size="small"></ion-icon></ion-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div *ngIf="instructivos.length===0" class="ion-padding">
   <ion-text color="danger">
