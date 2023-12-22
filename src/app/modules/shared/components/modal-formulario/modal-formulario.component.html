@@ -21,8 +21,12 @@
       <ion-col size="auto">
         <ion-label>Estado</ion-label>
         <ion-item lines="none"> 
-          <ion-badge color="success">
-            Vigente
+          <ion-badge color="danger">
+            No vigente
+            <ion-icon name="close-circle"></ion-icon>
+          </ion-badge>
+          <ion-badge color="warning">
+            Elaborado
             <ion-icon name="checkmark-circle"></ion-icon>
           </ion-badge>
         </ion-item>
@@ -50,23 +54,22 @@
         </ion-item>
       </ion-col>
       <ion-col size="auto">
-        <ion-label>Fecha Fin</ion-label>
-        <ion-item>
-          <ion-datetime-button datetime="fechaFin"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime id="fechaFin"></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-item>
-      </ion-col>
-      <ion-col size="auto">
         <ion-label>Tipo Documento</ion-label>
         <ion-item>
           <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción">
             <ion-select-option value="1">Política</ion-select-option>
             <ion-select-option value="2">Guía</ion-select-option>
             <ion-select-option value="3">Instructivo</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-label>Confidencialidad</ion-label>
+        <ion-item>
+          <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción">
+            <ion-select-option value="Alta">Alta</ion-select-option>
+            <ion-select-option value="Media">Media</ion-select-option>
+            <ion-select-option value="Baja">Baja</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
