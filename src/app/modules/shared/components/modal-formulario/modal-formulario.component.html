@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <form (ngSubmit)="enviarDatos()">
+  <form >
     <ion-toolbar><h2>Nuevo Instructivo</h2></ion-toolbar>
     <ion-grid>
       <ion-row>
@@ -44,7 +44,7 @@
             name="version" [(ngModel)]="version"
             type="number" placeholder="0.0"></ion-input>
           </ion-item>
-          <ion-chip color="tertiary">1.0</ion-chip>
+          <ion-chip  color="tertiary">1.0</ion-chip>
           <ion-chip color="tertiary">2.0</ion-chip>
           <ion-chip color="tertiary">3.0</ion-chip>
         </ion-col>
@@ -54,7 +54,7 @@
             <ion-datetime-button   datetime="fechaInicio"></ion-datetime-button>
             <ion-modal [keepContentsMounted]="true">
               <ng-template>
-                <ion-datetime id="fechaInicio" displayFormat="DD/MM/YYYY" [(ngModel)]="fechaInicio" (ionChange)="obtenerFechaSeleccionada($event)"></ion-datetime>
+                <ion-datetime id="fechaInicio" [(ngModel)]="fecha_inicio" (ionChange)="obtenerFechaSeleccionada($event)"></ion-datetime>
               </ng-template>
             </ion-modal>
           </ion-item>
@@ -67,6 +67,7 @@
               toggleIcon="caret-down-sharp"
               interface="popover"
               placeholder="Elija opción"
+              (ionChange)="obtenerTipoDocumento($event)"
             >
               <ion-select-option value="1">Política</ion-select-option>
               <ion-select-option value="2">Guía</ion-select-option>
@@ -77,7 +78,8 @@
         <ion-col size="auto">
           <ion-label>Confidencialidad</ion-label>
           <ion-item>
-            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción">
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción"
+            (ionChange)="obtenerConfidencia($event)">
               <ion-select-option value="Alta">Alta</ion-select-option>
               <ion-select-option value="Media">Media</ion-select-option>
               <ion-select-option value="Baja">Baja</ion-select-option>
@@ -91,6 +93,7 @@
         <ion-col>
           <ion-label>Subir Documento</ion-label>
           <ion-input
+            (change)="onFileUpload($event)"
             class="content-input"
             type="file"
             placeholder="Awesome Input"
@@ -102,9 +105,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar style="text-align: center">
-    <ion-button color="tertiary" shape="round" fill="outline"
-      >Cancelar</ion-button
-    >
-    <ion-button color="tertiary" shape="round" fill="solid">Crear</ion-button>
+    <ion-button color="tertiary" shape="round" fill="outline" >Cancelar</ion-button >
+    <ion-button (click)="enviarDatos()"  color="tertiary" shape="round" fill="solid">Crear</ion-button>
   </ion-toolbar>
 </ion-footer>

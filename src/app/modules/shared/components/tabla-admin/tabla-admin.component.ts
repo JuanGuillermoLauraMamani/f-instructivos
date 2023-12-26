@@ -81,20 +81,26 @@ export class TablaAdminComponent  implements OnInit {
   }
 
   restarFechas(fechaInicial: string) : string {
-    const tiempoInicial = Date.parse(fechaInicial);
+    console.log(fechaInicial);
+    const tiempoInicial = fechaInicial.split("/");
+    const dia = +tiempoInicial[0];
+    const mes = +tiempoInicial[1]-1;
+    const año = +tiempoInicial[2];
+
+    const fecha = new Date(año, mes, dia).getTime();    
     const tiempoFinal = new Date().getTime();
 
     let resultado!: string;
-    let dias: number = Math.floor((tiempoFinal - tiempoInicial) / (1000 * 60 * 60 * 24));
+    let dias: number = Math.floor((tiempoFinal - fecha) / (1000 * 60 * 60 * 24));
 
     if(dias > 30){
       resultado = "Hace "+ Math.trunc(dias/30)+" meses";
     }else if(dias > 365){
       resultado = "Hace "+ Math.trunc(dias/365)+" años" ;
-    }else if(Number.isNaN(dias) ){
-      resultado = "hoy";
-    }else{      
+    }else if(!Number.isNaN(dias) ){
       resultado ="Hace "+ dias+" días";
+    } else{ 
+      resultado = "hoy";
     }
     return resultado
   }

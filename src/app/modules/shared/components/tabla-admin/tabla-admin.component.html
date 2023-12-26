@@ -17,6 +17,8 @@
         <td>Nombre</td>
         <td>Versión</td>
         <td>Vigencia</td>
+        <td>Estado</td>
+        <td>Confidencia</td>
         <td>Fecha Inicio</td>
         <td>Fecha Fin</td>
         <td>Tipo</td>
@@ -34,6 +36,8 @@
         <td>
           <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{ inst.vigencia ? "Vigente" : "No vigente" }}</ion-badge>
         </td>
+        <td>{{ inst.estado }}</td>
+        <td>{{ inst.confidencia}}</td>
         <td>{{ inst.fecha_inicio }}</td>
         <td>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</td>
         <td>{{ inst.tipo }}</td>

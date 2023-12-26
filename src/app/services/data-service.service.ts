@@ -39,7 +39,7 @@ export class DataServiceService {
     return of(this.instructivo.find(instructivo => instructivo.id_instructivo === id) as Instructivo);
   }
   
-  registrarInstructivo(formData: FormData) {
+  registrarInstructivo(formData: FormData): Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/`, formData);
 
   }
