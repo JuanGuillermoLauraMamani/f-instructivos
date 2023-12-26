@@ -56,12 +56,10 @@ export class TablaAdminComponent  implements OnInit {
     return modal.present();
   }
 
-
   async openFormulario() {
     let modal = await this.modalController.create({
       component: ModalFormularioComponent,
       cssClass: 'modal-pdf'
-
     });
 
     return modal.present();
@@ -70,7 +68,7 @@ export class TablaAdminComponent  implements OnInit {
 
   async openInstructivo(instructivo: Instructivo) {
     let modal = await this.modalController.create({
-      component: ModalInstructivoComponent,
+      component: ModalFormularioComponent,
       cssClass: 'modal-pdf',
       componentProps: {
         instructivo
@@ -79,6 +77,7 @@ export class TablaAdminComponent  implements OnInit {
     console.log(instructivo);
     return modal.present();
   }
+
 
   restarFechas(fechaInicial: string) : string {
     console.log(fechaInicial);
