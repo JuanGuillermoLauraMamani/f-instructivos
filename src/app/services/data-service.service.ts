@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { Instructivo } from '../models/instructivos';
+import { Tipo } from '../models/tipos';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +14,20 @@ export class DataServiceService {
   seleccionado = new BehaviorSubject<Instructivo|null>(null);
   url: string ="";
 
-  private apiUrl = 'http://127.0.0.1:5000/api/instructivos'; // Reemplaza esto con tu URL
-
+  private apiUrl = 'http://127.0.0.1:5000'; // Reemplaza esto con tu URL
   
   constructor(private http: HttpClient) { }
 
   getDataVigentes(): Observable<Instructivo[]> {
-    return this.http.get<Instructivo[]>(`${this.apiUrl}/vigentes`).pipe(map((data:any)=> {
+    return this.http.get<Instructivo[]>(`${this.apiUrl}/api/instructivos/vigentes`).pipe(map((data:any)=> {
       return this.instructivo = data.instructivos;} ));
   }
   getData(): Observable<Instructivo[]> {
-    return this.http.get<Instructivo[]>(this.apiUrl).pipe(map((data:any)=> {
+    return this.http.get<Instructivo[]>(`${this.apiUrl}/api/instructivos`).pipe(map((data:any)=> {
       return this.instructivo = data.instructivos;} ));
   }
   getInstructivo(id: number): Observable<Instructivo> {
-    return this.http.get<Instructivo>(`${this.apiUrl}/${id}`).pipe();
+    return this.http.get<Instructivo>(`${this.apiUrl}/api/instructivos/${id}`).pipe();
   }
 
   enviarInstructivoSeleccionado(instructivo: Instructivo) {
@@ -40,9 +40,30 @@ export class DataServiceService {
   }
   
   registrarInstructivo(formData: FormData): Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/`, formData);
+    return this.http.post<any>(`${this.apiUrl}/api/instructivos`, formData);
 
   }
+
+  editarInstructivo(formData: FormData, id: number): Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/api/instructivos/${id}`, formData);
+  }
+
+  getTipos(): Observable<Tipo[]> {
+    return this.http.get<Tipo>(`${this.apiUrl}/api/tipos`).pipe(map((data:any)=> {
+      return data.tipos;} ));
+  }
+
+  registrarTipo(formData: FormData): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/api/tipos`, formData);
+  }
+
+  aprobarInstructivo(id: number, formData: FormData): Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/api/instructivos/vigencia_estado/${id}`, formData);
+  }
+  
+
+
+
   /*
   getPDF(url:string): Observable<ArrayBuffer> {
    return this.http.get(url, {responseType: 'arraybuffer'});

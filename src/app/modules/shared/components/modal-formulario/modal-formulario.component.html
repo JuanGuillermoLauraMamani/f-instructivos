@@ -68,10 +68,8 @@
               interface="popover"
               placeholder="Elija opción"
               (ionChange)="obtenerTipoDocumento($event)"
-            >
-              <ion-select-option value="1">Política</ion-select-option>
-              <ion-select-option value="2">Guía</ion-select-option>
-              <ion-select-option value="3">Instructivo</ion-select-option>
+              [(ngModel)]="tipo"            >
+              <ion-select-option *ngFor="let t of tipos " value="t.id_tipo">{{t.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -79,7 +77,7 @@
           <ion-label>Confidencialidad</ion-label>
           <ion-item>
             <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Elija opción"
-            (ionChange)="obtenerConfidencia($event)">
+            (ionChange)="obtenerConfidencia($event)" [(ngModel)]="confidencia">
               <ion-select-option value="Alta">Alta</ion-select-option>
               <ion-select-option value="Media">Media</ion-select-option>
               <ion-select-option value="Baja">Baja</ion-select-option>
@@ -96,7 +94,7 @@
             (change)="onFileUpload($event)"
             class="content-input"
             type="file"
-            placeholder="Awesome Input"
+            placeholder="Sube tu instructivo"
           ></ion-input>
         </ion-col>
       </ion-row>
@@ -106,6 +104,8 @@
 <ion-footer>
   <ion-toolbar style="text-align: center">
     <ion-button color="tertiary" shape="round" fill="outline" >Cancelar</ion-button >
-    <ion-button (click)="enviarDatos()"  color="tertiary" shape="round" fill="solid">Crear</ion-button>
+    <ion-button *ngIf="accion=='Agregar'" (click)="enviarDatos()"  color="tertiary" shape="round" fill="solid">Crear</ion-button>
+    <ion-button *ngIf="accion=='Editar'" (click)="editarDatos()"  color="tertiary" shape="round" fill="solid">Editar</ion-button>
+
   </ion-toolbar>
 </ion-footer>

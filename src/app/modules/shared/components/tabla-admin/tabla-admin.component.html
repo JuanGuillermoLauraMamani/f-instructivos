@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <div class="ion-padding">
-  <table datatable [dtOptions]="dtOptions" *ngIf="instructivos.length>0">
+  <table datatable [dtOptions]="dtOptions" *ngIf="instructivos.length > 0">
     <thead>
       <tr>
         <td>ID</td>
@@ -34,41 +34,128 @@
         <td>{{ inst.nombre }}</td>
         <td>{{ inst.version }}</td>
         <td>
-          <ion-badge color="{{inst.vigencia? 'success' : 'danger' }}">{{ inst.vigencia ? "Vigente" : "No vigente" }}</ion-badge>
+          <ion-badge color="{{ inst.vigencia ? 'success' : 'danger' }}">{{
+            inst.vigencia ? "Vigente" : "No vigente"
+          }}</ion-badge>
         </td>
-        <td>{{ inst.estado }}</td>
-        <td>{{ inst.confidencia}}</td>
+        <td>
+          <ion-badge color="{{ inst.estado ? 'success' : 'warning' }}">{{
+            inst.estado ? "Aprobado" : "Elaborado"
+          }}</ion-badge>
+
+          
+        </td>
+        <td>
+          <ion-badge color="{{ inst.confidencia=='Alta'? 'danger' : inst.confidencia=='Media'? 'warning':'success' }}">{{
+            inst.confidencia
+          }}</ion-badge>
+
+        </td>
         <td>{{ inst.fecha_inicio }}</td>
         <td>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</td>
         <td>{{ inst.tipo }}</td>
         <td>
-          <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_originales/'+inst.id_instructivo+'.pdf')">
+          <ion-button
+            size="small"
+            (click)="
+              open(
+                inst,
+                'http://127.0.0.1:5000/instructivos_originales/' +
+                  inst.id_instructivo +
+                  '.pdf'
+              )
+            "
+          >
             <ion-icon name="eye-outline" size="small"></ion-icon>
           </ion-button>
         </td>
         <td>
-          <ion-button size="small" (click)="open(inst, 'http://127.0.0.1:5000/instructivos_escaneados/'+inst.id_instructivo+'.pdf')">
+          <ion-button
+            size="small"
+            (click)="
+              open(
+                inst,
+                'http://127.0.0.1:5000/instructivos_escaneados/' +
+                  inst.id_instructivo +
+                  '.pdf'
+              )
+            "
+          >
             <ion-icon name="eye-outline" size="small"></ion-icon>
           </ion-button>
         </td>
         <td>
-            <ion-icon name="timer-outline"></ion-icon>
-            {{ restarFechas(inst.fecha_inicio) }}
+          <ion-icon name="timer-outline"></ion-icon>
+          {{ restarFechas(inst.fecha_inicio) }}
         </td>
         <td>
-          <ion-button fill="clear" color="dark" id="{{inst.id_instructivo}}" size="small">
+          <ion-button
+            fill="clear"
+            color="dark"
+            id="{{ inst.id_instructivo }}"
+            size="small"
+          >
             <ion-icon name="ellipsis-vertical-outline"></ion-icon>
           </ion-button>
-          <ion-popover trigger="{{ inst.id_instructivo }}" [showBackdrop]="false">
+          <ion-popover
+            trigger="{{ inst.id_instructivo }}"
+            [showBackdrop]="false"
+          >
             <ng-template>
-              <ion-content>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+              <ion-content>
                 <ion-list>
-                  <ion-item [button]="true" [detail]="false" (click) = "openInstructivo(inst)">
-                    Editar instructivo 
+                  <ion-item
+                    [button]="true"
+                    [detail]="false"
+                    (click)="openInstructivo(inst)"
+                  >
+                    Editar instructivo
                   </ion-item>
+                  <ion-item
+                    id="{{ inst.id_instructivo + '_aprobar' }}"
+                    [button]="true"
+                    [detail]="false"
+                  >
+                    Aprobar instructivo
+                  </ion-item>
+                  <ion-popover
+                    trigger="{{ inst.id_instructivo + '_aprobar' }}"
+                    [showBackdrop]="false"
+                    side="left"
+                  >
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <ion-card>
+                          <ion-card-header>
+                            <ion-card-title
+                              >Sube tu doc. escaneado para
+                              aprobar</ion-card-title
+                            >
+                          </ion-card-header>
+
+                          <ion-card-content>
+                            <ion-input
+                              (change)="onFileUpload($event)"
+                              class="content-input"
+                              type="file"
+                              placeholder="Sube tu instructivo"
+                            >
+                            </ion-input>
+                            <ion-button
+                              size="default"
+                              color="tertiary"
+                              (click)="aprobarInstructivo(inst)"
+                            >
+                              <ion-icon name="checkmark-outline"></ion-icon>
+                            </ion-button>
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-content>
+                    </ng-template>
+                  </ion-popover>
                   <ion-item [button]="true" [detail]="false">
-                    Anular instructivo 
-                  </ion-item>    
+                    Anular instructivo
+                  </ion-item>
                 </ion-list>
               </ion-content>
             </ng-template>
@@ -78,8 +165,8 @@
     </tbody>
   </table>
 </div>
-<div *ngIf="instructivos.length===0" class="ion-padding">
+<div *ngIf="instructivos.length === 0" class="ion-padding">
   <ion-text color="danger">
     <h2>No existen instructivos cargados</h2>
   </ion-text>
-</div> 
+</div>

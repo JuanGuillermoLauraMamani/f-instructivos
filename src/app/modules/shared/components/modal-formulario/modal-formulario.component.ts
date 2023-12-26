@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
 import { event } from 'jquery';
 import { Instructivo } from 'src/app/models/instructivos';
+import { Tipo } from 'src/app/models/tipos';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { DataSharedService } from 'src/app/services/data-shared.service';
 
@@ -14,12 +15,11 @@ import { DataSharedService } from 'src/app/services/data-shared.service';
 export class ModalFormularioComponent implements OnInit {
   nombre!: string;
   version!: number;
-  fecha_inicio!: string;
+  fecha_inicio!: any;
   tipo: string = '';
   archivo!: File;
   confidencia: string = '';
-
-
+  tipos: Tipo[] = [];
 
   form = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
@@ -29,44 +29,55 @@ export class ModalFormularioComponent implements OnInit {
     archivo: new FormControl('', [Validators.required]),
   });
 
-  fechaInicio!: string; 
+  fechaInicio!: string;
   instructivo!: Instructivo;
 
-  accion = "Agregar";
+  accion:string = 'Agregar';
 
-  constructor(private datosService: DataServiceService, private modalController: ModalController, private navParams: NavParams, private serviceScript: DataSharedService) { 
-    this.instructivo = this.navParams.get('instructivo');  
-    console.log(this.instructivo);
+  constructor(
+    private datosService: DataServiceService,
+    private modalController: ModalController,
+    private navParams: NavParams,
+    private serviceScript: DataSharedService
+  ) {
+    this.instructivo = this.navParams.get('instructivo');
+
+    
   }
 
   ngOnInit() {
-    this.serviceScript.loadScript('my-script', 'src/app/utils/lib/custom-input.js')
-            .then(data => {
-                console.log('script loaded ', data);
-            }).catch(error => console.log(error));
+    this.getTipos();
     this.esEditar();
   }
-  esEditar(){
-    if(this.instructivo !== undefined){
-      this.accion = "Editar";
+  esEditar() {
+    if (this.instructivo !== undefined) {
+      this.accion = 'Editar';
+      this.nombre = this.instructivo.nombre;
+      this.version = this.instructivo.version;
+      this.fecha_inicio = this.instructivo.fecha_inicio
+      console.log(this.fecha_inicio);
+      this.tipo = this.instructivo.tipo;
+      console.log(this.tipo);
+      this.confidencia = this.instructivo.confidencia;
+      console.log(this.confidencia);
     }
   }
 
-  enviarDatos(){
+  async enviarDatos() {
     const formData = new FormData();
     // Agrega los datos del formulario según sea necesario
     formData.append('nombre', this.nombre);
-    console.log(this.nombre);
+
     formData.append('version', this.version + '');
-    console.log(this.version);
+
     formData.append('fecha_inicio', this.fecha_inicio);
-    console.log(this.fecha_inicio);
+
     formData.append('id_tipo', this.tipo);
-    console.log(this.tipo);
+
     formData.append('file', this.archivo);
-    console.log(this.archivo);
+
     formData.append('confidencia', this.confidencia);
-    
+
     console.log(formData);
 
     // Llama al servicio para enviar los datos al backend
@@ -82,27 +93,63 @@ export class ModalFormularioComponent implements OnInit {
     });
   }
 
+  async editarDatos() {
+    const formData = new FormData();
+    // Agrega los datos del formulario según sea necesario
+    formData.append('nombre', this.nombre);
+
+    formData.append('version', this.version + '');
+
+    formData.append('fecha_inicio', this.fecha_inicio);
+
+    formData.append('id_tipo', this.tipo);
+
+    formData.append('file', this.archivo);
+
+    formData.append('confidencia', this.confidencia);
+
+    console.log(formData);
+
+    // Llama al servicio para enviar los datos al backend
+    await this.datosService
+      .editarInstructivo(formData, this.instructivo.id_instructivo)
+      .subscribe({
+        next: (response) => {
+          console.log('Respuesta del servidor:', response);
+          // Maneja la respuesta del servidor según sea necesario
+        },
+        error: (error) => {
+          console.error('Error al enviar los datos:', error);
+          // Maneja el error según sea necesario
+        },
+      });
+  }
+
+
   onFileUpload(event: any) {
     this.archivo = event.target.files[0];
-    console.log(this.archivo);
   }
 
   obtenerTipoDocumento(event: any) {
-    console.log(event);
     this.tipo = event.detail.value;
-    console.log(this.tipo);
   }
 
   obtenerConfidencia(event: any) {
-    console.log(event);
     this.confidencia = event.detail.value;
-    console.log(this.confidencia);
   }
 
   obtenerFechaSeleccionada(event: any) {
-    this.fecha_inicio = event.detail.value; // Esto obtiene la fecha seleccionada del evento
-    console.log(this.fecha_inicio); // Puedes usar esta fecha como desees
+    this.fecha_inicio = event.detail.value; 
   }
+
+
+  getTipos(): void {
+    this.datosService.getTipos().subscribe((response: Tipo[]) => {
+      this.tipos = response;
+      console.log(response);
+    });
+  }
+
 
   close() {
     this.modalController.dismiss();

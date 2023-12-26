@@ -23,7 +23,7 @@ export class TablaAdminComponent  implements OnInit {
   valor: string = "";
   dtOptions: DataTables.Settings = {};
   campo!: keyof Instructivo;
-
+  archivo!: File;
 
 
   constructor(private dataService: DataServiceService, private modalController: ModalController) { }
@@ -80,18 +80,14 @@ export class TablaAdminComponent  implements OnInit {
 
 
   restarFechas(fechaInicial: string) : string {
-    console.log(fechaInicial);
     const tiempoInicial = fechaInicial.split("/");
     const dia = +tiempoInicial[0];
     const mes = +tiempoInicial[1]-1;
     const año = +tiempoInicial[2];
-
     const fecha = new Date(año, mes, dia).getTime();    
     const tiempoFinal = new Date().getTime();
-
     let resultado!: string;
     let dias: number = Math.floor((tiempoFinal - fecha) / (1000 * 60 * 60 * 24));
-
     if(dias > 30){
       resultado = "Hace "+ Math.trunc(dias/30)+" meses";
     }else if(dias > 365){
@@ -110,6 +106,28 @@ export class TablaAdminComponent  implements OnInit {
   }
   recibirCampo(campo:string){
     this.campo = campo as keyof Instructivo;
+  }
+
+  onFileUpload(event: any) {
+    this.archivo = event.target.files[0];
+    console.log(this.archivo);
+  }
+
+  aprobarInstructivo(instructivo: Instructivo) {
+    const formData = new FormData();
+    formData.append('file', this.archivo);
+    console.log(formData);
+
+    this.dataService.aprobarInstructivo(instructivo.id_instructivo, formData).subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Maneja la respuesta del servidor según sea necesario
+      },
+      error: (error) => {
+        console.error('Error al enviar los datos:', error);
+        // Maneja el error según sea necesario
+      },
+    });
   }
 
 
