@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular/common';
 import { Instructivo } from 'src/app/models/instructivos';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { ModalPDFComponent } from '../modal-pdf/modal-pdf.component';
-import { ModalInstructivoComponent } from '../modal-instructivo/modal-instructivo.component';
+
 import { ModalFormularioComponent } from '../modal-formulario/modal-formulario.component';
 
 @Component({
@@ -26,13 +26,14 @@ export class TablaAdminComponent  implements OnInit {
   archivo!: File;
 
 
-  constructor(private dataService: DataServiceService, private modalController: ModalController) { }
+  constructor(private dataService: DataServiceService, private modalController: ModalController, private toastController: ToastController) { }
 
 
   getData(): void {
     this.dataService.getData().subscribe((response: Instructivo[]) => {
       this.instructivos = response;
       console.log(response);
+
     });
   }
 
@@ -122,13 +123,23 @@ export class TablaAdminComponent  implements OnInit {
       next: (response) => {
         console.log('Respuesta del servidor:', response);
         // Maneja la respuesta del servidor según sea necesario
+        if(response.status==200){
+          this.mostrarToast('Se ha aprobado correctamente el instructivo');
+        }
       },
       error: (error) => {
         console.error('Error al enviar los datos:', error);
-        // Maneja el error según sea necesario
+        this.mostrarToast('Ocurrio un error, no se ha podido aprobar el instructivo');
       },
     });
   }
 
+  async mostrarToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000 // Duración del toast en milisegundos
+    });
+    toast.present();
+  }
 
 }

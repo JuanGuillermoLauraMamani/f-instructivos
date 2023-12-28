@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-auth',
@@ -13,13 +15,27 @@ export class AuthPage implements OnInit {
     password: new FormControl('', [Validators.required])
   })
 
-  constructor() { }
+  constructor(private serviceData:DataServiceService) { }
 
   ngOnInit() {
   }
 
-  prueba(){
-    console.log(this.form.value);
+  login(){
+    const formdata = new FormData();
+    formdata.append('usuario', "guille");
+    formdata.append('password', '1234');
+    formdata.append('grant_type', 'password');
+    formdata.append('client_id', 'qrinstructivos');
+    formdata.append('client_secret', 'KSd0LHkdlLyKNsRpmp2xUpFlJ5wiUwSL');    
+
+    return this.serviceData.authUser(formdata)
+    .subscribe((response: any) => {
+      console.log(response);
+      localStorage.setItem('token', response.access_token);
+    });
+    console.log(this.form.value.usuario);
   }
+
+
 
 }

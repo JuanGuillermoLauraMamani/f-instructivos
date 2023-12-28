@@ -12,7 +12,7 @@
   <form >
     <ion-toolbar><h2> {{ accion }} Instructivo</h2></ion-toolbar>
     <ion-grid>
-      <ion-row>
+      <ion-row size="auto">
         <ion-col size="8">
           <ion-label>Nombre del instructivo</ion-label>
           <ion-item>
@@ -36,7 +36,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row size="auto">
         <ion-col size="auto">
           <ion-label>Versión</ion-label>
           <ion-item>
@@ -68,8 +68,8 @@
               interface="popover"
               placeholder="Elija opción"
               (ionChange)="obtenerTipoDocumento($event)"
-              [(ngModel)]="tipo"            >
-              <ion-select-option *ngFor="let t of tipos " value="t.id_tipo">{{t.nombre}}</ion-select-option>
+              [(ngModel)]="tipo" >
+              <ion-select-option *ngFor="let t of tipos " [value]="t.id_tipo" >{{t.nombre}} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -87,15 +87,25 @@
 
         <ion-col offset="string"></ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>
+      <ion-row >
+        <ion-col size="4">
           <ion-label>Subir Documento</ion-label>
           <ion-input
             (change)="onFileUpload($event)"
-            class="content-input"
             type="file"
             placeholder="Sube tu instructivo"
           ></ion-input>
+        </ion-col>
+        <ion-col size="8" *ngIf="accion=='Editar'">
+         
+          <ion-card>
+            <ion-label>Documento original</ion-label>
+            <iframe
+            width="100%"
+            height="100%"
+            [src]="'http://127.0.0.1:5000/instructivos_originales/'+instructivo.id_instructivo+'.pdf' | safe"
+          ></iframe>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>

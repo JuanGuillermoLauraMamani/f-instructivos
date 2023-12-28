@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { Instructivo } from '../models/instructivos';
 import { Tipo } from '../models/tipos';
@@ -62,7 +62,20 @@ export class DataServiceService {
   }
   
 
+  authUser(formData: FormData): Observable<any>{
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    headers.set('Access-Control-Allow-Origin', '*');  
 
+    let urlencoded = new URLSearchParams();
+    urlencoded.append("username", "guille");
+    urlencoded.append("password", "1234");
+    urlencoded.append("grant_type", "password");
+    urlencoded.append("client_id", "qrinstructivos");
+    urlencoded.append("client_secret", "KSd0LHkdlLyKNsRpmp2xUpFlJ5wiUwSL");
+
+    return this.http.post<any>('https://keycloak.usecc.com/keycloak/realms/simacv2/protocol/openid-connect/token', urlencoded,{headers});
+  }
 
   /*
   getPDF(url:string): Observable<ArrayBuffer> {

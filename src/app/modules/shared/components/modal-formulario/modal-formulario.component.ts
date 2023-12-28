@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { event } from 'jquery';
 import { Instructivo } from 'src/app/models/instructivos';
 import { Tipo } from 'src/app/models/tipos';
@@ -38,7 +38,8 @@ export class ModalFormularioComponent implements OnInit {
     private datosService: DataServiceService,
     private modalController: ModalController,
     private navParams: NavParams,
-    private serviceScript: DataSharedService
+    private serviceScript: DataSharedService,
+    private toastController: ToastController
   ) {
     this.instructivo = this.navParams.get('instructivo');
 
@@ -70,7 +71,7 @@ export class ModalFormularioComponent implements OnInit {
 
     formData.append('version', this.version + '');
 
-    formData.append('fecha_inicio', this.fecha_inicio);
+    //formData.append('fecha_inicio', this.fecha_inicio);
 
     formData.append('id_tipo', this.tipo);
 
@@ -84,10 +85,14 @@ export class ModalFormularioComponent implements OnInit {
     await this.datosService.registrarInstructivo(formData).subscribe({
       next: (response) => {
         console.log('Respuesta del servidor:', response);
+        if(response.status==200){
+          this.mostrarToast('Se ha registrado el instructivo');
+        }
         // Maneja la respuesta del servidor según sea necesario
       },
       error: (error) => {
         console.error('Error al enviar los datos:', error);
+        this.mostrarToast('Ocurrio un error, no se ha podido registrar el instructivo');
         // Maneja el error según sea necesario
       },
     });
@@ -116,12 +121,21 @@ export class ModalFormularioComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('Respuesta del servidor:', response);
+          if(response.status==200){
+            this.mostrarToast('Se ha actualizado el instructivo');
+          }
           // Maneja la respuesta del servidor según sea necesario
         },
         error: (error) => {
           console.error('Error al enviar los datos:', error);
+          this.mostrarToast('Ocurrio un error, no se ha podido actualizar el instructivo');
           // Maneja el error según sea necesario
         },
+
+
+
+
+
       });
   }
 
@@ -132,6 +146,7 @@ export class ModalFormularioComponent implements OnInit {
 
   obtenerTipoDocumento(event: any) {
     this.tipo = event.detail.value;
+    console.log(this.tipo);
   }
 
   obtenerConfidencia(event: any) {
@@ -150,6 +165,13 @@ export class ModalFormularioComponent implements OnInit {
     });
   }
 
+  async mostrarToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000 // Duración del toast en milisegundos
+    });
+    toast.present();
+  }
 
   close() {
     this.modalController.dismiss();
