@@ -29,17 +29,13 @@
         <ion-col size="3">
           <ion-row class="ion-justify-content-end">
             <ion-col size="50%">
-              <ion-button shape="round">
-                <a href="{{instructivoSeleccionado.ruta_pdf_escaneado}}">
-                  Descargar
-                </a>
+              <ion-button [href]="urlEscaneado"  shape="round">
+                Descargar
               </ion-button>
             </ion-col>
             <ion-col size="50%">
-              <ion-button shape="round">
-                <a href="{{instructivoSeleccionado.ruta_pdf_original}}">
-                  Original (sin firmas)
-                </a>
+              <ion-button href="urlOriginal" shape="round">
+                Original (sin firmas)
               </ion-button>
             </ion-col>
           </ion-row>

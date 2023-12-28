@@ -10,7 +10,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class InstructivoPage implements OnInit {
   instructivoSeleccionado: Instructivo = {} as Instructivo;
-
+  urlOriginal: any = '';
+  urlEscaneado: any = '';
   constructor(
     private route: ActivatedRoute,
     private dataService: DataServiceService
@@ -19,6 +20,9 @@ export class InstructivoPage implements OnInit {
 
   ngOnInit() {
     this.getID();
+    const id: number = Number(this.route.snapshot.paramMap.get('id'));
+    this.downloadOriginal(id);
+    this.downloadEscaneado(id);
   }
 
   getID(): void {
@@ -29,5 +33,23 @@ export class InstructivoPage implements OnInit {
       .subscribe((instructivo: Instructivo) => {
         this.instructivoSeleccionado = instructivo;
       });
+  }
+
+  downloadOriginal(id: number) {
+    this.dataService
+      .downloadInstructivoOriginal(id)
+      .subscribe((data: any) => {
+        this.urlOriginal = data.url;  
+        console.log(this.urlOriginal);      
+      });
+  }
+  downloadEscaneado(id: number){
+    this.dataService
+      .downloadInstructivoEscaneado(id)
+      .subscribe((data: any) => {
+        this.urlEscaneado = data.url;   
+        console.log(this.urlEscaneado);     
+      });
+
   }
 }

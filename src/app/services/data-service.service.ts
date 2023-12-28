@@ -61,6 +61,15 @@ export class DataServiceService {
     return this.http.put<any>(`${this.apiUrl}/api/instructivos/vigencia_estado/${id}`, formData);
   }
   
+  downloadInstructivoOriginal(id:number): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/api/instructivos/originales/${id}`).pipe();
+  }
+
+  downloadInstructivoEscaneado(id:number): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/api/instructivos/escaneados/${id}`).pipe();
+  }
+
+
 
   authUser(formData: FormData): Observable<any>{
     const headers = new HttpHeaders();
