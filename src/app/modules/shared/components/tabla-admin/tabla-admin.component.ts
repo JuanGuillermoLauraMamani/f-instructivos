@@ -41,7 +41,8 @@ export class TablaAdminComponent  implements OnInit {
     this.dtOptions = {
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
-      }
+      },
+      scrollX: true,
     };
     this.getData();
   }
@@ -130,6 +131,22 @@ export class TablaAdminComponent  implements OnInit {
       error: (error) => {
         console.error('Error al enviar los datos:', error);
         this.mostrarToast('Ocurrio un error, no se ha podido aprobar el instructivo');
+      },
+    });
+  }
+
+  async anularInstructivo(instructivo: Instructivo) {
+    await this.dataService.anularInstructivo(instructivo.id_instructivo).subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Maneja la respuesta del servidor según sea necesario
+        if(response.status==200){
+          this.mostrarToast('Se ha anulado correctamente el instructivo');
+        }
+      },
+      error: (error) => {
+        console.error('Error al enviar los datos:', error);
+        this.mostrarToast('Ocurrio un error, no se ha podido anular el instructivo');
       },
     });
   }

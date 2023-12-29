@@ -14,11 +14,13 @@
     <thead>
       <tr>
         <td>ID</td>
+        <td>Codigo</td>
         <td>Nombre</td>
         <td>Versión</td>
         <td>Vigencia</td>
         <td>Estado</td>
-        <td>Confidencia</td>
+        <td>Clasificación</td>
+        <td>Responsable</td>
         <td>Fecha Inicio</td>
         <td>Fecha Fin</td>
         <td>Tipo</td>
@@ -31,6 +33,7 @@
     <tbody>
       <tr *ngFor="let inst of instructivos">
         <td>{{ inst.id_instructivo }}</td>
+        <td>{{ inst.codigo }}</td>
         <td>{{ inst.nombre }}</td>
         <td>{{ inst.version }}</td>
         <td>
@@ -46,11 +49,12 @@
           
         </td>
         <td>
-          <ion-badge color="{{ inst.confidencia=='Alta'? 'danger' : inst.confidencia=='Media'? 'warning':'success' }}">{{
-            inst.confidencia
+          <ion-badge color="{{ inst.clasificacion=='Alta'? 'danger' : inst.clasificacion=='Media'? 'warning':'success' }}">{{
+            inst.clasificacion
           }}</ion-badge>
 
         </td>
+        <td>{{ inst.responsable }}</td>
         <td>{{ inst.fecha_inicio }}</td>
         <td>{{ inst.vigencia !== true ? inst.fecha_fin : "-" }}</td>
         <td>{{ inst.tipo }}</td>
@@ -152,7 +156,7 @@
                       </ion-content>
                     </ng-template>
                   </ion-popover>
-                  <ion-item [button]="true" [detail]="false">
+                  <ion-item [button]="true" [detail]="false" (click)="anularInstructivo(inst)">
                     Anular instructivo
                   </ion-item>
                 </ion-list>

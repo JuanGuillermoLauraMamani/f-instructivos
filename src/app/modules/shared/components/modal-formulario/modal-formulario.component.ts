@@ -59,7 +59,7 @@ export class ModalFormularioComponent implements OnInit {
       console.log(this.fecha_inicio);
       this.tipo = this.instructivo.tipo;
       console.log(this.tipo);
-      this.confidencia = this.instructivo.confidencia;
+      this.confidencia = this.instructivo.clasificacion;
       console.log(this.confidencia);
     }
   }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class AuthPage implements OnInit {
     password: new FormControl('', [Validators.required])
   })
 
-  constructor(private serviceData:DataServiceService) { }
+  constructor(private serviceData:DataServiceService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,10 @@ export class AuthPage implements OnInit {
     console.log(this.form.value.usuario);
   }
 
+  loginAdmin(){
+    console.log("loginAdmin");
+    this.router.navigate(['/admin']);
+  }
 
 
 }

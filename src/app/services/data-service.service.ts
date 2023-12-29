@@ -69,6 +69,10 @@ export class DataServiceService {
     return this.http.get<any>(`${this.apiUrl}/api/instructivos/escaneados/${id}`).pipe();
   }
 
+  anularInstructivo(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/api/instructivos/${id}`);
+
+  }
 
 
   authUser(formData: FormData): Observable<any>{
